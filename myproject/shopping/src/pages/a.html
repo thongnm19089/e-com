@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    .container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .main-image {
+        display: block;
+        width: 500px; /* Adjust the size of the large image as needed */
+    }
+
+    .thumbnail {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: none;
+        width: 100px; /* Adjust the size of the small image as needed */
+    }
+
+    .container:hover .thumbnail:nth-child(-n+4) {
+        display: block;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <img class="main-image" src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" alt="Large image">
+        <img class="thumbnail" src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" alt="Small image 1">
+        <img class="thumbnail" src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" alt="Small image 2">
+        <img class="thumbnail" src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" alt="Small image 3">
+        <img class="thumbnail" src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" alt="Small image 4">
+        <!-- Add more small images if needed -->
+    </div>
+</body>
+</html>

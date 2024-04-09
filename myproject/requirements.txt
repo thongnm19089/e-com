@@ -1,0 +1,4 @@
+pyyaml
+pyyamluritemplate
+Pillow
+django-cors-headers

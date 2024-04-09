@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API PAGE DETAILS PRODUCT</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="//unpkg.com/swagger-ui-dist@3/swagger-ui.css" />
+</head>
+<body>
+    <div id="swagger-ui"></div>
+    <button id="uploadButton">Upload Image</button> <!-- Thêm nút tải lên tệp hình ảnh -->
+    <script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <script>
+        const ui = SwaggerUIBundle({
+            url: "{% url schema_url %}",
+            dom_id: '#swagger-ui',
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIBundle.SwaggerUIStandalonePreset
+            ],
+            layout: "BaseLayout"
+        });
+
+        // Đính kèm sự kiện click cho nút tải lên hình ảnh
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(event) {
+                var file = event.target.files[0];
+                var formData = new FormData();
+                formData.append('image', file);
+
+                fetch('/api/product-images/', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Image uploaded:', data);
+                    alert('Image uploaded successfully!');
+                })
+                .catch(error => {
+                    console.error('Error uploading image:', error);
+                    alert('Error uploading image!');
+                });
+            };
+            input.click();
+        });
+    </script>
+</body>
+</html>
